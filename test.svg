@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Login • SVG + HTML</title>
+<style>
+  :root {
+    --brand: #0a77ff;
+    --bg: #f0f4f8;
+    --card-bg: #ffffff;
+    --radius: 14px;
+    --shadow: 0 8px 20px rgb(0 0 0 / 0.08);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100dvh;
+    margin: 0;
+    background: var(--bg);
+    font: 16px/1.5 system-ui, sans-serif;
+  }
+
+  .card {
+    position: relative;
+    width: 360px;
+    border-radius: var(--radius);
+    overflow: hidden;           /* clip SVG wave */
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+  }
+
+  /* put the SVG wave in front so it hides behind header text */
+  .card svg {
+    display: block;
+    width: 100%;
+    height: 120px;
+  }
+
+  /* form container follows immediately after the SVG */
+  form {
+    padding: 2.75rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  input {
+    padding: 0.55rem 0.7rem;
+    border: 1px solid #cdd4dc;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  button {
+    padding: 0.6rem 0.7rem;
+    border: none;
+    border-radius: 6px;
+    background: var(--brand);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  button:hover { background: #055fde; }
+
+  h1 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 36px;
+    left: 2rem;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <!-- Decorative SVG header -->
+  <svg viewBox="0 0 360 120" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#4a8aff"/>
+        <stop offset="100%" stop-color="#0a77ff"/>
+      </linearGradient>
+    </defs>
+    <!-- A simple wave path -->
+    <path d="M0 0H360V60
+             C300 100 240 80 180 96
+             C110 112 60 88 0 104Z"
+          fill="url(#grad)"/>
+  </svg>
+
+  <!-- Header text sits above the SVG via absolute positioning -->
+  <h1>Welcome&nbsp;back</h1>
+
+  <!-- Plain HTML login form -->
+  <form>
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Sign&nbsp;In</button>
+  </form>
+</div>
+
+</body>
+</html>
